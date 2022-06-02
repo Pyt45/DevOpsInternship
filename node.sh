@@ -16,7 +16,7 @@ sudo modprobe br_netfilter
 sudo sysctl -w net.bridge.bridge-nf-call-iptables=1
 sudo sh -c "sudo echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables"
 
-sudo /usr/bin/dockerd –exec-opt native.cgroupdriver=systemd
+# sudo /usr/bin/dockerd –exec-opt native.cgroupdriver=systemd
 
 /bin/bash /vagrant/configs/join.sh -v
 sudo -i -u vagrant bash << EOF

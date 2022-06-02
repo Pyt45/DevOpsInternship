@@ -2,7 +2,7 @@
 #
 # Common setup for all server(Control plane and nodes)
 
-set -euxo pipefail
+# set -euxo pipefail
 
 # disbale swap
 sudo swapoff -a
@@ -51,12 +51,13 @@ sudo yum install -y kubelet kubeadm kubectl
 sudo systemctl enable kubelet --now
 sudo systemctl start kubelet
 sudo yum install -y iproute-tc
+sudo yum install -y jq
 # sudo systemctl stop firewalld
 sudo rm -rf /etc/containerd/config.toml
 sudo systemctl restart containerd
 
 # sudo yum install -y jq
 local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "eth1" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')"
-cat > /etc/default/kubelet << EOF
-KUBELET_EXTRA_ARGS=--node-ip=$local_ip
-EOF
+sudo sh -c 'sudo cat > /etc/default/kubelet << EOF
+KUBELET_EXTRA_ARGS=--node-ip=10.0.0.10
+EOF'
