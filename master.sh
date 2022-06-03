@@ -57,15 +57,16 @@ chmod +x /vagrant/configs/join.sh
 
 sudo kubeadm token create --print-join-command > /vagrant/configs/join.sh
 
-export kubever=$(kubectl version | base64 | tr -d '\n')
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
-
 sudo -i -u vagrant bash << EOF
 whoami
 mkdir -p /home/vagrant/.kube
 sudo cp -i /vagrant/configs/config /home/vagrant/.kube/
 sudo chown 1000:1000 /home/vagrant/.kube/config
 EOF
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+# export kubever=$(kubectl version --output=json | base64 | tr -d '\n')
+# kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+sleep 10
 
 # echo "hello from master node" > test.txt
 # sudo cp test.txt /vagrant/test.txt

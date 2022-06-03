@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
         master.vm.provider "virtualbox" do |vb|
             vb.memory = 2048
             vb.cpus = 2
-            # vb.customize ["modifyvm", :id, "--name", "master"]
+            vb.customize ["modifyvm", :id, "--name", "master"]
             # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
             # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         end
@@ -33,13 +33,13 @@ Vagrant.configure("2") do |config|
         node.vm.provider "virtualbox" do |vb|
             vb.memory = 512
             vb.cpus = 1
-            # vb.customize ["modifyvm", :id, "--name", "node0"]
+            vb.customize ["modifyvm", :id, "--name", "node0"]
             # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
             # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         end
         # node.vm.synced_folder ".", "/vagrant"
         node.vm.provision "shell", path: "common.sh"
-        node.vm.provision "shell", path: "node.sh"
+        # node.vm.provision "shell", path: "node.sh"
     end
     # config.vm.define "node1" do |node|
     #     node.vm.hostname = "node1"

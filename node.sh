@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -euxo pipefail
+# set -euxo pipefail
 
 sudo systemctl enable firewalld --now
 sudo systemctl start firewalld
