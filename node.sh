@@ -2,6 +2,7 @@
 
 # set -euxo pipefail
 
+
 sudo systemctl enable firewalld --now
 sudo systemctl start firewalld
 
@@ -18,7 +19,7 @@ sudo sh -c "sudo echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables"
 
 # sudo /usr/bin/dockerd –exec-opt native.cgroupdriver=systemd
 
-/bin/bash /vagrant/configs/join.sh -v
+sudo /vagrant/configs/join.sh -v
 sudo -i -u vagrant bash << EOF
 whoami
 mkdir -p /home/vagrant/.kube

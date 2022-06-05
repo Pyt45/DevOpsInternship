@@ -2,7 +2,7 @@
 
 # set -euxo pipefail
 
-MASTER_IP="10.0.0.10"
+MASTER_IP="192.168.42.10"
 NODENAME=$(hostname -s)
 POD_CIDR="192.168.0.0/16"
 
@@ -42,11 +42,11 @@ sudo kubeadm config images pull
 sudo kubeadm init --apiserver-advertise-address=$MASTER_IP --apiserver-cert-extra-sans=$MASTER_IP --pod-network-cidr=$POD_CIDR --node-name "$NODENAME" --ignore-preflight-errors Swap
 config_path="/vagrant/configs"
 
-if [ -d $config_path ]; then
-    rm -f $config_path
-else
-    mkdir -p $config_path
-fi
+# if [ -d $config_path ]; then
+#     rm -rf $config_path
+# else
+mkdir -p $config_path
+# fi
 
 # sudo mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf /vagrant/configs/config
@@ -66,7 +66,7 @@ EOF
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 # export kubever=$(kubectl version --output=json | base64 | tr -d '\n')
 # kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
-sleep 10
+# sleep 10
 
 # echo "hello from master node" > test.txt
 # sudo cp test.txt /vagrant/test.txt
