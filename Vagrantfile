@@ -15,13 +15,13 @@ Vagrant.configure("2") do |config|
     config.vm.define "master" do |master|
         master.vm.hostname = "master"
         master.vm.network "private_network", ip: IP_NW + "#{IP_START}"
-        master.vm.synced_folder ".", "/vagrant"
+        master.vm.synced_folder "configs", "/vagrant"
         master.vm.provider "virtualbox" do |vb|
             vb.memory = 2048
             vb.cpus = 2
             vb.customize ["modifyvm", :id, "--name", "master"]
-            vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-            vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+            # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+            # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         end
         # master.vm.synced_folder ".", "/vagrant"
         master.vm.provision "shell", path: "common.sh"
@@ -31,13 +31,13 @@ Vagrant.configure("2") do |config|
     config.vm.define "node0" do |node|
         node.vm.hostname = "node0"
         node.vm.network "private_network", ip: IP_NW + "#{IP_START + 1}"
-        node.vm.synced_folder ".", "/vagrant"
+        node.vm.synced_folder "configs", "/vagrant"
         node.vm.provider "virtualbox" do |vb|
             vb.memory = 512
             vb.cpus = 1
             vb.customize ["modifyvm", :id, "--name", "node0"]
-            vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-            vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+            # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+            # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         end
         # node.vm.synced_folder ".", "/vagrant"
         node.vm.provision "shell", path: "common.sh"

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # set -euxo pipefail
-
+sudo hostnamectl set-hostname --static node0
 
 sudo systemctl enable firewalld --now
 sudo systemctl start firewalld

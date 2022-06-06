@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  namespace: kube-system
+spec:
+  rules:
+  - host: master
+    http:
+      paths:
+        - path: /
+          backend:
+            service:
+              name: kubernetes-dashboard
+              port:
+                number: 8001
