@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
 # set -euxo pipefail
-sudo hostnamectl set-hostname --static node0
+NODENAME=$(hostname -s)
+sudo hostnamectl set-hostname --static $NODENAME
 
 sudo systemctl enable firewalld --now
 sudo systemctl start firewalld
@@ -19,11 +20,11 @@ sudo sh -c "sudo echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables"
 
 # sudo /usr/bin/dockerd –exec-opt native.cgroupdriver=systemd
 
-sudo /vagrant/configs/join.sh -v
+sudo /vagrant/join.sh -v
 sudo -i -u vagrant bash << EOF
 whoami
 mkdir -p /home/vagrant/.kube
-sudo cp -i /vagrant/configs/config /home/vagrant/.kube/
+sudo cp -i /vagrant/config /home/vagrant/.kube/
 sudo chown 1000:1000 /home/vagrant/.kube/config
 NODENAME=$(hostname -s)
 kubectl label node $(hostname -s) node-role.kubernetes.io/worker=worker
