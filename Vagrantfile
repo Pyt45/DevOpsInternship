@@ -2,6 +2,12 @@ NUM_WORKER_NODES=4
 IP_NW="192.168.42."
 IP_START=110
 
+$INSTALL_HELM = <<-SCRIPT
+    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    chmod 700 get_helm.sh
+    ./get_helm.sh
+SCRIPT
+
 Vagrant.configure("2") do |config|
     config.vm.provision "shell", env: {"IP_NW" => IP_NW, "IP_START" => IP_START}, inline: <<-SHELL
         echo "$IP_NW$((IP_START)) master" >> /etc/hosts
