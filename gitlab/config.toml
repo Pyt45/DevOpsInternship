@@ -10,6 +10,7 @@ check_interval = 0
   url = "https://gitlab.com/"
   token = "pyW7JVBNDXTb7A1JVsx6"
   executor = "kubernetes"
+  dns_search = ["https://gitlab.com"]
   [runners.custom_build_dir]
   [runners.cache]
     [runners.cache.s3]
