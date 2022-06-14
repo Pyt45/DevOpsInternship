@@ -4,7 +4,7 @@ sudo curl -L --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downlo
 sudo chmod +x /usr/local/bin/gitlab-runner
 
 kubectl create namespace gitlab
-
+sudo firewall-cmd --permanent --add-port=53/tcp
 kubectl apply -f gitlab-account.yml
 kubectl apply -f gitlab-secret.tml
 
