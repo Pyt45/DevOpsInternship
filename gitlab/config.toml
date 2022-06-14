@@ -1,0 +1,43 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  pre_clone_script = 'cat /etc/resolv.conf | sed -r "s/^(search.*|options.*)/#\1/" > /tmp/resolv && cat /tmp/resolv > /etc/resolv.conf'
+  name = "kubernetes-runner"
+  url = "https://gitlab.com/"
+  token = "pyW7JVBNDXTb7A1JVsx6"
+  executor = "kubernetes"
+  [runners.custom_build_dir]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]
+  [runners.kubernetes]
+    host = "https://192.168.42.110:6443"
+    ca_file = "/home/vagrant/centos/k8s/ca.crt"
+    bearer_token_overwrite_allowed = false
+    bearer_token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhTZjJlZFJBZVhKcklCRDJCQnd3QmZobTJ5dWJFdk41RThlTXIwZHA1Q00ifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJnaXRsYWIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoiZ2l0bGFiLXNlcnZpY2Utc2VjcmV0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImdpdGxhYi1hZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjI0NDAwZDQ2LWYxNWYtNGNmYS1hMWRkLTZjN2VlM2ZmZTRjYyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpnaXRsYWI6Z2l0bGFiLWFkbWluIn0.iElhia2QxBraGxtMMVa9op8-P0aKtn9XjLu7sd4DktTZO17BDkv611ZVtWNTQGc1vKUfNPpmjWzW1eyfWcWsXmtU3Y5ulIal-DDBO0tvjdhGRCSKXiYF1tSuQqGNDLs6C-eCN9Pn75fWlrd4T_4i2whgFUawtBzSoAVv1x8LowNrHvY03Z3qQmRN4NzpZNQs5y8GVvBAM3DOG9J1esE9DtCrhXkg0pRS-zlKddG-wpgEg_t6NWMXP-bb8oy_PMP-es1vui76341VMbngkT2N5NiQrnwaBpt6GoJnt4J7iPDjtEL27905TxwpvsLth9wWhcPVgjwI8Y9zeGpDpMDIYg"
+    image = ""
+    namespace = "gitlab"
+    privileged = true
+    namespace_overwrite_allowed = ""
+    service_account_overwrite_allowed = ""
+    pod_annotations_overwrite_allowed = ""
+    [runners.kubernetes.affinity]
+    [runners.kubernetes.pod_security_context]
+    [runners.kubernetes.build_container_security_context]
+      [runners.kubernetes.build_container_security_context.capabilities]
+    [runners.kubernetes.helper_container_security_context]
+      [runners.kubernetes.helper_container_security_context.capabilities]
+    [runners.kubernetes.service_container_security_context]
+      [runners.kubernetes.service_container_security_context.capabilities]
+    [runners.kubernetes.volumes]
+    [[runners.kubernetes.volumes.host_path]]
+        name = "docker"
+        mount_path = "/var/run/docker.sock"
+        host_path = "/var/run/docker.sock"
+    [runners.kubernetes.dns_config]
+    [runners.kubernetes.container_lifecycle]

@@ -15,7 +15,7 @@ metadata:
 spec:
   storageClassName: local-storage
   claimRef:
-    name: jenkins-pv-claim
+    name: jenkins-pvc-volume
     namespace: jenkins
   capacity:
     storage: 10Gi
@@ -45,3 +45,5 @@ spec:
   resources:
     requests:
       storage: 3Gi
+
+# mEV5wgMGC8foYWZsgIbQRc
