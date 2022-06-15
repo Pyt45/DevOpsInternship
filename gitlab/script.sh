@@ -12,3 +12,4 @@ sudo docker-compose exec gitlab-runner-container \
     --docker-image "docker:stable" --tag-list "test, pyt" --docker-volumes /var/run/docker.sock:/var/run/docker.sock
 
 sudo docker-compose exec gitlab-runner-container gitlab-runner verify
+sudo docker-compose exec gitlab-runner-container gitlab-runner run

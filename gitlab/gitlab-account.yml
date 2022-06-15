@@ -4,7 +4,7 @@ metadata:
   name: gitlab-admin
   namespace: gitlab
 ---
-kind: Role
+kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   namespace: gitlab
@@ -15,7 +15,7 @@ rules:
     verbs: ["*"]
 
 ---
-kind: RoleBinding
+kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: gitlab-admin
@@ -25,6 +25,6 @@ subjects:
     name: gitlab-admin
     namespace: gitlab
 roleRef:
-  kind: Role
+  kind: ClusterRole
   name: gitlab-admin
   apiGroup: rbac.authorization.k8s.io

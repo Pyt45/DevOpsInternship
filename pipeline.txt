@@ -1,0 +1,20 @@
+GitLab CI/CD
+    -> Automation engine
+    -> Enables teams to perform DevOps practices
+        . Continuous Integration
+        . Continuous Devlivery/Deployment
+    -> Automatically build, test, and deploy using a GitLab pipeline
+
+GitLab Pipeline
+    -> .gitlab-ci.yml
+    -> Automated set sequential steps to build, test, and deliver.deploy your code
+    -> GitLab pipeline have two main components
+        . Jobs describe the tasks that need to be done
+        . Stages define the order in which jobs will be completed
+    -> a pipeline basiclly is a set of instructions for a program to execute
+    -> The program that execute jobs in a gitlab pipeline is called a gitlab runner
+
+GitLab Runner
+    -> Separate program that can be run on your local host, VM or even container
+    -> Semilar to jenkins agent
+    -> gitlab assigns pipeline jobs to available Runners at pipeline runtime (either by using shared runners or a custom runner)
